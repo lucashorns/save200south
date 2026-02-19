@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Streets. Our Safety. Our Choice.</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:   #1a2744;
+      --amber:  #f5a623;
+      --amber-dark: #d4891a;
+      --white:  #ffffff;
+      --off-white: #f9f8f6;
+      --charcoal: #222222;
+      --mid-gray: #555555;
+      --light-gray: #e5e3df;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: var(--charcoal);
+      background: var(--off-white);
+      line-height: 1.7;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      background-image: url('assets/200south.png');
+      background-size: cover;
+      background-position: center 40%;
+      background-repeat: no-repeat;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 18, 40, 0.72) 0%,
+        rgba(10, 18, 40, 0.58) 60%,
+        rgba(10, 18, 40, 0.80) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    .hero-top-line {
+      width: 56px;
+      height: 4px;
+      background: var(--amber);
+      margin: 0 auto 24px;
+      border-radius: 2px;
+    }
+
+    .hero h1 {
+      font-family: 'Arial', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.45);
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 4px;
+      background: var(--amber);
+      margin: 28px auto 0;
+      border-radius: 2px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.6);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll svg {
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* ─── SHARED SECTION STYLES ────────────────────────── */
+    .section {
+      padding: 72px 24px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 14px;
+    }
+
+    /* ─── PROBLEM SECTION ──────────────────────────────── */
+    .section-problem {
+      background: var(--white);
+    }
+
+    .section-problem h2 {
+      font-family: 'Arial', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+
+    .section-problem p {
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+      color: var(--mid-gray);
+      line-height: 1.8;
+    }
+
+    /* ─── WHY CARE SECTION ─────────────────────────────── */
+    .section-why {
+      background: var(--navy);
+    }
+
+    .section-why .section-label {
+      color: var(--amber);
+    }
+
+    .section-why h2 {
+      font-family: 'Arial', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .why-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(245, 166, 35, 0.18);
+      border: 1.5px solid rgba(245, 166, 35, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .why-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .why-text strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .why-text p {
+      font-size: 0.96rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA SECTION ──────────────────────────────────── */
+    .section-cta {
+      background: var(--off-white);
+      text-align: left;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .section-cta h2 {
+      font-family: 'Arial', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 40px;
+    }
+
+    .cta-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .cta-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      padding: 36px 32px;
+    }
+
+    .cta-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--amber);
+      color: var(--navy);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+
+    .cta-item h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .cta-item p {
+      font-size: 0.97rem;
+      color: var(--mid-gray);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--amber);
+      color: var(--navy);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 14px 28px;
+      border-radius: 4px;
+      min-height: 50px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(245, 166, 35, 0.28);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--amber-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245, 166, 35, 0.38);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ─── MODAL ─────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 18, 40, 0.65);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--mid-gray);
+      font-size: 1.4rem;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .modal-close:hover {
+      color: var(--charcoal);
+      background: var(--off-white);
+    }
+
+    .modal h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .modal .modal-sub {
+      font-size: 0.92rem;
+      color: var(--mid-gray);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .modal-form label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .modal-form input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--light-gray);
+      border-radius: 4px;
+      font-family: 'Arial', sans-serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+      background: var(--off-white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    .modal-form input:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.18);
+    }
+
+    .modal-form .btn-submit {
+      margin-top: 8px;
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+
+    .modal-success .success-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(245, 166, 35, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .modal-success .success-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .modal-success h4 {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .modal-success p {
+      font-size: 0.92rem;
+      color: var(--mid-gray);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 28px 24px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── DESKTOP ENHANCEMENTS ─────────────────────────── */
+    @media (min-width: 768px) {
+      .section {
+        padding: 96px 40px;
+      }
+
+      .why-list {
+        gap: 36px;
+      }
+
+      .why-icon {
+        width: 44px;
+        height: 44px;
+      }
+
+      .cta-grid {
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .cta-item {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-content">
+      <div class="hero-top-line"></div>
+      <h1>Our Streets<br>Our Safety<br>Our Choice</h1>
+      <div class="hero-divider"></div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Learn more</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── PROBLEM ───────────────────────────────────────── -->
+  <section class="section section-problem" id="about">
+    <div class="container">
+      <h2>SB 242 Threatens Improvements Made on 200 S and Other SLC Streets</h2>
+      <p>A bill currently moving through the Utah Legislature, SB 242, would give the state increased control over how Salt Lake City designs its streets and<b> could require the city to modify or remove recently installed bus lanes and protected bike lanes</b>, including those on 200 South. These improvements have made downtown safer, more accessible, and more vibrant for people walking, biking, and riding transit. If passed without changes, SB 242 risks rolling back proven safety and transit investments, prioritizing vehicle traffic flow over safer streets, better transit, and a healthier, more livable downtown.</p>
+    </div>
+  </section>
+
+  <!-- ── WHY CARE ──────────────────────────────────────── -->
+  <section class="section section-why" id="why">
+    <div class="container">
+      <h2>Why You Should Care</h2>
+      <ul class="why-list">
+
+        <li class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="why-text">
+            <strong>Safer streets save lives.</strong>
+            <p>Protected bike lanes, better crossings, and calmer traffic reduce crashes and injuries for everyone &mdash; including drivers.</p>
+          </div>
+        </li>
+
+        <li class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="why-text">
+            <strong>Better transit helps everyone move.</strong>
+            <p>Faster, more reliable buses mean fewer cars on the road, less congestion, and more affordable transportation options.</p>
+          </div>
+        </li>
+
+        <li class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="why-text">
+            <strong>Downtown businesses benefit.</strong>
+            <p>Walkable, people-friendly streets increase foot traffic, support restaurants and retail, and boost local economic activity.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────── -->
+  <section class="section section-cta" id="act">
+    <div class="container">
+      <h2>How You Can Help</h2>
+      <div class="cta-grid">
+
+        <div class="cta-item">
+          <div class="cta-step" aria-hidden="true">1</div>
+          <h3>Contact Your Legislators</h3>
+          <p>Use our pre-written email template to send a message to the bill&rsquo;s sponsors and the senators on the Transportation Subcommittee. Please modify our template to include personal stories of how the improvements on SLC streets have impacted your life. </p>
+          <a
+            id="email-btn"
+            class="btn-primary"
+            href="#"
+            aria-label="Email the bill sponsors about SB 242"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Email Bill Sponsors
+          </a>
+        </div>
+
+        <div class="cta-item">
+          <div class="cta-step" aria-hidden="true">2</div>
+          <h3>Stay Up-to-Date</h3>
+          <p>Join our mailing list to find out how you can stay involved in the future.</p>
+          <button class="btn-primary" onclick="openMailingModal()" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <line x1="19" y1="8" x2="19" y2="14"/>
+              <line x1="22" y1="11" x2="16" y2="11"/>
+            </svg>
+            Join Mailing List
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MAILING LIST MODAL ────────────────────────────── -->
+  <div id="mailing-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <button class="modal-close" onclick="closeMailingModal()" aria-label="Close">&times;</button>
+
+      <div id="modal-form-view">
+        <h3 id="modal-title">Join Our Mailing List</h3>
+        <p class="modal-sub">Stay informed on SB 242 and future opportunities to take action for safer streets in Salt Lake City.</p>
+        <form class="modal-form" id="mailing-form" onsubmit="submitMailingForm(event)">
+          <div>
+            <label for="field-name">Full Name</label>
+            <input type="text" id="field-name" name="name" placeholder="Jane Smith" required autocomplete="name" />
+          </div>
+          <div>
+            <label for="field-email">Email Address</label>
+            <input type="email" id="field-email" name="email" placeholder="jane@example.com" required autocomplete="email" />
+          </div>
+          <div>
+            <label for="field-zip">Zip Code</label>
+            <input type="text" id="field-zip" name="zip" placeholder="84101" required inputmode="numeric" maxlength="10" />
+          </div>
+          <button type="submit" class="btn-primary btn-submit" id="submit-btn">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="modal-success" id="modal-success-view">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4>You&rsquo;re on the list!</h4>
+        <p>Thank you for signing up. We&rsquo;ll be in touch with updates on SB 242 and ways to get involved.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <p>In support of safe, livable streets in Salt Lake City</p>
+  </footer>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxs1LXRcM6rHCzcksASomZWcB4g917fGU44jvlNECq8cfoRW3KqhdAwWK4DLmYKxrbB/exec';
+
+    // ── Email button ──────────────────────────────────────
+    const emailTo      = 'wharper@le.utah.gov,kchristofferson@le.utah.gov';
+    const emailCc      = 'dipson@le.utah.gov,kkwan@le.utah.gov,dmccay@le.utah.gov,kriebe@le.utah.gov,kstratton@le.utah.gov,cwilson@le.utah.gov,rwinterton@le.utah.gov';
+    const emailSubject = 'SB242 Amendments';
+    const emailBody    = `Dear Senator Harper and Representative Christofferson,
+
+Thank you for your service and for the time you dedicate to making Utah an even better place to live!
+
+I am writing today to share concerns about the potential impacts of SB 242 and to respectfully suggest several amendments that would lead to a more balanced, data-driven approach to what the bill aims to achieve.
+
+Since Salt Lake City rebuilt 200 South to include dedicated bus lanes and protected bike lanes, my experience as someone who uses this street often has improved significantly. These street improvements have led to heightened pedestrian and cyclist safety, faster and more reliable bus service, reduced crash risk, and an overall improvement in the character and atmosphere of the street.
+
+These projects have meaningfully improved daily life for thousands of people who live and work along 200 South, as well as the countless others who commute on this street via bike and bus. It would be unfortunate to undo these benefits solely to save a few minutes of vehicle travel time during peak congestion.
+
+Additionally, the street redesign has improved the character and atmosphere of the street, creating a more welcoming environment for restaurants, patios, and storefronts, and enhancing the overall experience for diners, shoppers, and visitors. The positive economic impact of these improvements should also be part of the evaluation.
+
+As you know, downtown Salt Lake City is rapidly growing into a more pedestrian-oriented urban center. With the reopening of the Salt Lake Temple, the creation of the Sports and Entertainment District, the expansion of the Salt Palace, and the upcoming 2034 Olympic Games, it is critical that our downtown streets support safety and an inviting experience for the millions of residents and visitors who will be spending time here in the coming years.
+
+With these goals in mind, I respectfully propose the following amendments to SB 242:
+
+1. Require multimodal performance evaluation. When assessing transportation projects and street designs, require analysis of impacts on transit reliability, bicycle and pedestrian safety, total person-throughput, and access to local businesses — not solely impacts on vehicle traffic flow.
+
+2. Require data-driven review before lane modification or removal. Before any recently installed transit or bicycle lane is modified or removed, require a minimum 12-month before-and-after evaluation using metrics such as crash data, transit travel times, ridership, bicycle volumes, and vehicle delay, ensuring decisions are grounded in evidence and real-world outcomes.
+
+3. Allow flexibility in urban and downtown contexts. Permit narrower lane widths and alternative street designs in downtowns, transit corridors, and pedestrian-oriented districts where safety and economic vitality are the primary objectives.
+
+Perhaps more than anywhere else in Utah, Downtown Salt Lake's streets serve purposes far beyond simply moving vehicles. They are corridors for pedestrians, bicyclists, and transit riders; recreation routes for joggers and dog walkers; and spaces for outdoor dining and community gathering. Streets make up the majority of Salt Lake's public realm and their design directly shapes the character of our city and the experience of those who live, work, and visit here.
+
+Thank you for considering these suggestions as SB 242 moves forward. I appreciate your time and your thoughtful attention to this important issue.`;
+
+    document.getElementById('email-btn').href =
+      `mailto:${emailTo}?cc=${encodeURIComponent(emailCc)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    function openMailingModal() {
+      document.getElementById('mailing-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('field-name').focus();
+    }
+
+    function closeMailingModal() {
+      document.getElementById('mailing-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('mailing-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeMailingModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMailingModal();
+    });
+
+    async function submitMailingForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Submitting…';
+      btn.disabled = true;
+
+      const data = {
+        name:  document.getElementById('field-name').value,
+        email: document.getElementById('field-email').value,
+        zip:   document.getElementById('field-zip').value,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        document.getElementById('modal-form-view').style.display = 'none';
+        document.getElementById('modal-success-view').style.display = 'block';
+        document.getElementById('mailing-form').reset();
+      } catch (err) {
+        btn.textContent = 'Subscribe';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    }
+  </script>
+
+</body>
+</html>
